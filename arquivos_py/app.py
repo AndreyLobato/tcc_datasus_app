@@ -2,9 +2,11 @@ import streamlit as st
 from pathlib import Path
 import pandas as pd
 from PIL import Image
+from datetime import datetime
+import os
 
-#st.set_page_config(page_title="Conversor de Arquivos", layout="centered")
-#st.title("🗂️ Conversor de Arquivos com Download")
+st.set_page_config(page_title="Galeria de Arquivos", layout="wide")
+st.title("🗂️ Galeria de Arquivos para Download")
 
 # Define a pasta onde estão os arquivos
 diretorio_arquivos = Path("old")
@@ -17,51 +19,25 @@ if not arquivos:
     st.stop()
 
 
-# Seleção de arquivo
-arquivo_selecionado = st.selectbox("Escolha um arquivo para conversão:", arquivos)
+# Define número de colunas por linha
+colunas = st.columns(3)
 
-# Detecta o tipo de arquivo e mostra opções
-opcoes = []
+for idx, arquivo in enumerate(arquivos):
+    col = colunas[idx % 3]  # distribui em 3 colunas
 
-if arquivo_selecionado:
-    if arquivo_selecionado.suffix == ".csv":
-        opcoes = ["Excel (.xlsx)", "JSON (.json)"]
-    elif arquivo_selecionado.suffix in [".jpg", ".jpeg", ".png"]:
-        opcoes = ["PDF (.pdf)"]
+    with col:
+        st.markdown("### 📄 " + arquivo.name)
+        tamanho_kb = os.path.getsize(arquivo) / 1024
+        data_modificacao = datetime.fromtimestamp(arquivo.stat().st_mtime).strftime('%d/%m/%Y %H:%M')
 
+        st.write(f"📏 {tamanho_kb:.2f} KB")
+        st.write(f"🕒 Modificado em: {data_modificacao}")
 
-if opcoes:
-    conversao = st.selectbox("Escolha o formato de conversão:", opcoes)
-
-    if st.button("Converter"):
-        arquivo_convertido = None
-
-        if conversao == "Excel (.xlsx)":
-            df = pd.read_csv(arquivo_selecionado)
-            destino = arquivo_selecionado.with_suffix(".xlsx")
-            df.to_excel(destino, index=False)
-            arquivo_convertido = destino
-
-        elif conversao == "JSON (.json)":
-            df = pd.read_csv(arquivo_selecionado)
-            destino = arquivo_selecionado.with_suffix(".json")
-            df.to_json(destino, orient="records", indent=2)
-            arquivo_convertido = destino
-
-        elif conversao == "PDF (.pdf)":
-            imagem = Image.open(arquivo_selecionado).convert("RGB")
-            destino = arquivo_selecionado.with_suffix(".pdf")
-            imagem.save(destino)
-            arquivo_convertido = destino
-
-        if arquivo_convertido:
-            st.success(f"Arquivo convertido: {arquivo_convertido.name}")
-            with open(arquivo_convertido, "rb") as f:
-                st.download_button(
-                    label="📥 Baixar arquivo convertido",
-                    data=f,
-                    file_name=arquivo_convertido.name,
-                    mime="application/octet-stream"
-                )
-else:
-    st.info("Nenhuma conversão disponível para esse tipo de arquivo.")
+        with open(arquivo, "rb") as f:
+            st.download_button(
+                label="⬇️ Baixar",
+                data=f,
+                file_name=arquivo.name,
+                use_container_width=True
+            )
+        st.markdown("---")
