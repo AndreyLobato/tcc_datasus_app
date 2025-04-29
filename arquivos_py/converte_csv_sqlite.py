@@ -3,7 +3,7 @@ import sqlite3
 from pathlib import PurePosixPath
 
 # Carregar CSV
-df = pd.read_csv("~/Projetos/tcc_app/tcc_datasus_app/df_arquivos_sus.csv")  # substitua pelo caminho real
+df = pd.read_csv("~/Projetos/tcc_app/tcc_datasus_app/arquivos_py/df_arquivos_sus.csv")  # substitua pelo caminho real
 
 # Preprocessar
 df["parent_path"] = df["path"].apply(lambda p: str(PurePosixPath(p).parent))
