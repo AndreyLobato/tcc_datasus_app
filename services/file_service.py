@@ -1,7 +1,7 @@
 # Lógica de negócio relacionada a arquivos (exibir, navegar, etc)
 
 import streamlit as st
-from database.queries import buscar_arquivos, contar_arquivos,listar_nomes_arquivos_unicos,listar_filtros_unicos
+from database.queries import buscar_arquivos, contar_arquivos,listar_nomes_arquivos_unicos,listar_filtros_unicos,obter_traducoes_distintas
 import math
 
 # Conversão segura dos filtros para inteiros
@@ -83,3 +83,9 @@ def mostrar_arquivos(conn, caminho_atual, subpastas):
         if st.button("➡️ Próxima") and pagina < total_paginas:
             st.session_state["pagina_atual"] += 1
             st.rerun()
+    
+    traducoes_df = obter_traducoes_distintas(conn)
+    if not traducoes_df.empty:
+        st.markdown("### ℹ️ Tradução de Setores")
+        for _, row in traducoes_df.iterrows():
+            st.markdown(f"- `{row['sigla_sistema']}` → {row['sistema_traducao']}")

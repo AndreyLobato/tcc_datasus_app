@@ -100,3 +100,14 @@ def listar_filtros_unicos(conn, caminho):
         "extensao": sorted(df["extensao"].dropna().unique()),
         "complemento": sorted(df["complemento"].dropna().unique())
     }
+
+def obter_traducoes_distintas(conn):
+    """Retorna as siglas de sistema e suas traduções distintas."""
+    query = """
+        SELECT DISTINCT ar.sigla_sistema, sistema_traducao
+        FROM arquivos ar
+        LEFT JOIN de_para dp on ar.sigla_sistema = dp.sigla_sistema and ar.sigla_subsistema = dp.sigla_subsistema
+        WHERE ar.sigla_sistema IS NOT NULL AND sistema_traducao IS NOT NULL
+        ORDER BY ar.sigla_sistema
+    """
+    return pd.read_sql_query(query, conn)
