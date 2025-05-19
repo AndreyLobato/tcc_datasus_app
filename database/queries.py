@@ -39,3 +39,12 @@ def contar_arquivos(conn, caminho, termo):
     """
     return pd.read_sql_query(query, conn, params=(caminho, termo_sql))["total"].iloc[0]
 
+def listar_nomes_arquivos_unicos(conn, caminho):
+    """Retorna lista única de nomes de arquivos no caminho atual."""
+    query = """
+        SELECT DISTINCT nome FROM arquivos
+        WHERE parent_path = ? AND is_dir = 0
+        ORDER BY nome
+    """
+    df = pd.read_sql_query(query, conn, params=(caminho,))
+    return df["nome"].tolist()
