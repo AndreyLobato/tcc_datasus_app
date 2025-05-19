@@ -22,7 +22,8 @@ def get_subpastas(conn, caminho_atual):
 
 def buscar_arquivos(conn, caminho, termo, nomes_selecionados, filtros_extra, offset, limite):
     query = """
-        SELECT * FROM arquivos
+        SELECT * FROM arquivos ar
+        LEFT JOIN de_para dp on ar.sigla_sistema = dp.sigla_sistema and ar.sigla_subsistema = dp.sigla_subsistema
         WHERE parent_path_new = ? AND LOWER(nome) LIKE ?
         and parent_path_new is not null
     """
@@ -48,7 +49,8 @@ def buscar_arquivos(conn, caminho, termo, nomes_selecionados, filtros_extra, off
 
 def contar_arquivos(conn, caminho, termo, nomes_selecionados, filtros_extra):
     query = """
-        SELECT COUNT(*) as total FROM arquivos
+        SELECT COUNT(*) as total FROM arquivos ar 
+        LEFT JOIN de_para dp on ar.sigla_sistema = dp.sigla_sistema and ar.sigla_subsistema = dp.sigla_subsistema
         WHERE parent_path_new = ? AND LOWER(nome) LIKE ?
         and parent_path_new is not null
     """
@@ -82,15 +84,16 @@ def listar_nomes_arquivos_unicos(conn, caminho):
 def listar_filtros_unicos(conn, caminho):
     """Retorna os valores únicos de cada coluna usada como filtro."""
     query = """
-        SELECT DISTINCT sigla_sistema, sigla_subsistema, uf, mes, ano, extensao, complemento
-        FROM arquivos
+        SELECT DISTINCT ar.sigla_sistema, dp.subsistema_traducao, uf, mes, ano, extensao, complemento
+        FROM arquivos ar
+        LEFT JOIN de_para dp on ar.sigla_sistema = dp.sigla_sistema and ar.sigla_subsistema = dp.sigla_subsistema
         WHERE parent_path_new = ? 
         and parent_path_new is not null
     """
     df = pd.read_sql_query(query, conn, params=(caminho,))
     return {
-        "sigla_sistema": sorted(df["sigla_sistema"].dropna().unique()),
-        "sigla_subsistema": sorted(df["sigla_subsistema"].dropna().unique()),
+
+        "subsistema_traducao": sorted(df["subsistema_traducao"].dropna().unique()),
         "uf": sorted(df["uf"].dropna().unique()),
         "mes": sorted(df["mes"].dropna().unique()),
         "ano": sorted(df["ano"].dropna().unique()),

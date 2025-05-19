@@ -32,20 +32,20 @@ def mostrar_arquivos(conn, caminho_atual, subpastas):
 
     filtros = listar_filtros_unicos(conn, caminho_atual)
 
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3 = st.columns(3)
     with col1:
-        st.multiselect("📁 Sistema", filtros["sigla_sistema"], key="filtro_sigla_sistema")
+
         st.multiselect("📍 UF", filtros["uf"], key="filtro_uf")
+        st.multiselect("🔧 Subsistema", filtros["subsistema_traducao"], key="filtro_sigla_subsistema")
 
     with col2:
-        st.multiselect("🔧 Subsistema", filtros["sigla_subsistema"], key="filtro_sigla_subsistema")
+
         st.multiselect("📆 Mês", filtros["mes"], key="filtro_mes")
+        st.multiselect("📅 Ano", filtros["ano"], key="filtro_ano")
 
     with col3:
-        st.multiselect("📅 Ano", filtros["ano"], key="filtro_ano")
-        st.multiselect("🧩 Extensão", filtros["extensao"], key="filtro_extensao")
 
-    with col4:
+        st.multiselect("🧩 Extensão", filtros["extensao"], key="filtro_extensao")
         st.multiselect("🗂️ Complemento", filtros["complemento"], key="filtro_complemento")
 
     pagina = st.session_state.get("pagina_atual", 1)
@@ -55,8 +55,7 @@ def mostrar_arquivos(conn, caminho_atual, subpastas):
     nomes_filtro = st.session_state.get("filtro_nomes", [])
 
     filtros_selecionados = {
-        "sigla_sistema": st.session_state.get("filtro_sigla_sistema", []),
-        "sigla_subsistema": st.session_state.get("filtro_sigla_subsistema", []),
+        "subsistema_traducao": st.session_state.get("filtro_sigla_subsistema", []),
         "uf": st.session_state.get("filtro_uf", []),
         "mes": filtrar_inteiros(st.session_state.get("filtro_mes", [])),
         "ano": filtrar_inteiros(st.session_state.get("filtro_ano", [])),
