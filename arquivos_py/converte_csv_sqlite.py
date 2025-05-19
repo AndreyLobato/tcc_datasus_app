@@ -221,13 +221,13 @@ def parse_nome_arquivo(nome, path, parent_path):
     return sigla_sistema, tipo, uf, mes, ano, extensao, complemento
 
 # Criar SQLite
-#conn = sqlite3.connect("catalogo_arquivos.db")
-conn = sqlite3.connect("teste_SIASUS.db")
+conn = sqlite3.connect("catalogo_arquivos.db")
+#conn = sqlite3.connect("teste_SIASUS.db")
 cursor = conn.cursor()
 
 # Limpar dados antigos (caso rode mais de uma vez)
-cursor.execute("DELETE FROM arquivos")
-cursor.execute("DELETE FROM de_para")
+#cursor.execute("DELETE FROM arquivos")
+#cursor.execute("DELETE FROM de_para")
 
 # Criar tabela arquivos
 cursor.execute("""
@@ -264,8 +264,8 @@ for _, row in df.iterrows():
     parent_path_new, path_new = None, None
     if row["nome"].split('.')[1] in ['dbc', 'dbf', 'DBC', 'DBF']:
         sigla_sistema, sigla_subsistema, uf, mes, ano, extensao, complemento = parse_nome_arquivo(row["nome"], row["path"], row["parent_path"])
-        path_new = f"""/{sigla_sistema}/{sigla_subsistema}/{row["nome"]}"""
-        parent_path_new = f"/{sigla_sistema}/{sigla_subsistema}"
+        path_new = f"""/{sigla_sistema}/{row["nome"]}"""
+        parent_path_new = f"/{sigla_sistema}"
     #print(_, row["nome"], row["path"], tipo, uf, mes, ano, extensao,"\n")
     cursor.execute("""
         INSERT INTO arquivos (

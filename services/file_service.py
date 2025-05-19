@@ -1,7 +1,7 @@
 # Lógica de negócio relacionada a arquivos (exibir, navegar, etc)
 
 import streamlit as st
-from database.queries import buscar_arquivos, contar_arquivos
+from database.queries import buscar_arquivos, contar_arquivos,listar_nomes_arquivos_unicos
 import math
 
 def mostrar_arquivos(conn, caminho_atual, subpastas):
@@ -26,14 +26,33 @@ def mostrar_arquivos(conn, caminho_atual, subpastas):
     else:
         st.info("Nenhuma subpasta.")
 
-    st.text_input("🔍 Buscar arquivos", key="busca", on_change=lambda: st.session_state.update({"pagina_atual": 1}))
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.text_input("🔍 Buscar arquivos por texto", key="busca", on_change=lambda: st.session_state.update({"pagina_atual": 1}))
+
+    with col2:
+        from database.queries import listar_nomes_arquivos_unicos
+        todos_nomes = listar_nomes_arquivos_unicos(conn, caminho_atual)
+        st.multiselect(
+            "🗂️ Filtrar por nome(s) exatos:",
+            options=todos_nomes,
+            default=[],
+            key="filtro_nomes"
+        )
+
+
     pagina = st.session_state.get("pagina_atual", 1)
     por_pagina = 10
 
-    total = contar_arquivos(conn, caminho_atual, st.session_state["busca"])
+
+    termo_busca = st.session_state.get("busca", "")
+    nomes_filtro = st.session_state.get("filtro_nomes", [])
+
+    total = contar_arquivos(conn, caminho_atual, termo_busca, nomes_filtro)
     total_paginas = max(1, math.ceil(total / por_pagina))
 
-    df = buscar_arquivos(conn, caminho_atual, st.session_state["busca"], (pagina - 1) * por_pagina, por_pagina)
+    df = buscar_arquivos(conn, caminho_atual, termo_busca, nomes_filtro, (pagina - 1) * por_pagina, por_pagina)
 
     st.markdown(f"📄 **{total} arquivo(s)** — Página {pagina} de {total_paginas}")
     for _, arq in df.iterrows():
