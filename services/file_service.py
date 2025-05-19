@@ -1,8 +1,12 @@
 # Lógica de negócio relacionada a arquivos (exibir, navegar, etc)
 
 import streamlit as st
-from database.queries import buscar_arquivos, contar_arquivos,listar_nomes_arquivos_unicos
+from database.queries import buscar_arquivos, contar_arquivos,listar_nomes_arquivos_unicos,listar_filtros_unicos
 import math
+
+# Conversão segura dos filtros para inteiros
+def filtrar_inteiros(valores):
+    return [int(v) for v in valores if v is not None and str(v).isdigit()]
 
 def mostrar_arquivos(conn, caminho_atual, subpastas):
     """Exibe subpastas e arquivos paginados."""
@@ -26,33 +30,45 @@ def mostrar_arquivos(conn, caminho_atual, subpastas):
     else:
         st.info("Nenhuma subpasta.")
 
-    col1, col2 = st.columns(2)
+    filtros = listar_filtros_unicos(conn, caminho_atual)
 
+    col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.text_input("🔍 Buscar arquivos por texto", key="busca", on_change=lambda: st.session_state.update({"pagina_atual": 1}))
+        st.multiselect("📁 Sistema", filtros["sigla_sistema"], key="filtro_sigla_sistema")
+        st.multiselect("📍 UF", filtros["uf"], key="filtro_uf")
 
     with col2:
-        from database.queries import listar_nomes_arquivos_unicos
-        todos_nomes = listar_nomes_arquivos_unicos(conn, caminho_atual)
-        st.multiselect(
-            "🗂️ Filtrar por nome(s) exatos:",
-            options=todos_nomes,
-            default=[],
-            key="filtro_nomes"
-        )
+        st.multiselect("🔧 Subsistema", filtros["sigla_subsistema"], key="filtro_sigla_subsistema")
+        st.multiselect("📆 Mês", filtros["mes"], key="filtro_mes")
 
+    with col3:
+        st.multiselect("📅 Ano", filtros["ano"], key="filtro_ano")
+        st.multiselect("🧩 Extensão", filtros["extensao"], key="filtro_extensao")
+
+    with col4:
+        st.multiselect("🗂️ Complemento", filtros["complemento"], key="filtro_complemento")
 
     pagina = st.session_state.get("pagina_atual", 1)
     por_pagina = 10
-
-
+    
     termo_busca = st.session_state.get("busca", "")
     nomes_filtro = st.session_state.get("filtro_nomes", [])
 
-    total = contar_arquivos(conn, caminho_atual, termo_busca, nomes_filtro)
+    filtros_selecionados = {
+        "sigla_sistema": st.session_state.get("filtro_sigla_sistema", []),
+        "sigla_subsistema": st.session_state.get("filtro_sigla_subsistema", []),
+        "uf": st.session_state.get("filtro_uf", []),
+        "mes": filtrar_inteiros(st.session_state.get("filtro_mes", [])),
+        "ano": filtrar_inteiros(st.session_state.get("filtro_ano", [])),
+        "extensao": st.session_state.get("filtro_extensao", []),
+        "complemento": st.session_state.get("filtro_complemento", [])
+    }
+
+
+    total = contar_arquivos(conn, caminho_atual, termo_busca, nomes_filtro, filtros_selecionados)
     total_paginas = max(1, math.ceil(total / por_pagina))
 
-    df = buscar_arquivos(conn, caminho_atual, termo_busca, nomes_filtro, (pagina - 1) * por_pagina, por_pagina)
+    df = buscar_arquivos(conn, caminho_atual, termo_busca, nomes_filtro, filtros_selecionados, (pagina - 1) * por_pagina, por_pagina)
 
     st.markdown(f"📄 **{total} arquivo(s)** — Página {pagina} de {total_paginas}")
     for _, arq in df.iterrows():

@@ -20,8 +20,7 @@ def get_subpastas(conn, caminho_atual):
             resultado.add(rel_path)
     return sorted(resultado)
 
-def buscar_arquivos(conn, caminho, termo, nomes_selecionados, offset, limite):
-    """Busca arquivos no caminho atual filtrando por texto e nomes exatos."""
+def buscar_arquivos(conn, caminho, termo, nomes_selecionados, filtros_extra, offset, limite):
     query = """
         SELECT * FROM arquivos
         WHERE parent_path_new = ? AND LOWER(nome) LIKE ?
@@ -34,14 +33,20 @@ def buscar_arquivos(conn, caminho, termo, nomes_selecionados, offset, limite):
         query += f" AND nome IN ({placeholders})"
         params.extend(nomes_selecionados)
 
+    for campo, valores in filtros_extra.items():
+        if valores:
+            ph = ",".join(["?"] * len(valores))
+            query += f" AND {campo} IN ({ph})"
+            params.extend(valores)
+
     query += " ORDER BY nome LIMIT ? OFFSET ?"
     params.extend([limite, offset])
-
+    
     return pd.read_sql_query(query, conn, params=params)
 
 
-def contar_arquivos(conn, caminho, termo, nomes_selecionados):
-    """Conta arquivos considerando busca e filtro por nome."""
+
+def contar_arquivos(conn, caminho, termo, nomes_selecionados, filtros_extra):
     query = """
         SELECT COUNT(*) as total FROM arquivos
         WHERE parent_path_new = ? AND LOWER(nome) LIKE ?
@@ -53,6 +58,12 @@ def contar_arquivos(conn, caminho, termo, nomes_selecionados):
         placeholders = ",".join(["?"] * len(nomes_selecionados))
         query += f" AND nome IN ({placeholders})"
         params.extend(nomes_selecionados)
+
+    for campo, valores in filtros_extra.items():
+        if valores:
+            ph = ",".join(["?"] * len(valores))
+            query += f" AND {campo} IN ({ph})"
+            params.extend(valores)
 
     return pd.read_sql_query(query, conn, params=params)["total"].iloc[0]
 
@@ -67,3 +78,22 @@ def listar_nomes_arquivos_unicos(conn, caminho):
     """
     df = pd.read_sql_query(query, conn, params=(caminho,))
     return df["nome"].tolist()
+
+def listar_filtros_unicos(conn, caminho):
+    """Retorna os valores únicos de cada coluna usada como filtro."""
+    query = """
+        SELECT DISTINCT sigla_sistema, sigla_subsistema, uf, mes, ano, extensao, complemento
+        FROM arquivos
+        WHERE parent_path_new = ? 
+        and parent_path_new is not null
+    """
+    df = pd.read_sql_query(query, conn, params=(caminho,))
+    return {
+        "sigla_sistema": sorted(df["sigla_sistema"].dropna().unique()),
+        "sigla_subsistema": sorted(df["sigla_subsistema"].dropna().unique()),
+        "uf": sorted(df["uf"].dropna().unique()),
+        "mes": sorted(df["mes"].dropna().unique()),
+        "ano": sorted(df["ano"].dropna().unique()),
+        "extensao": sorted(df["extensao"].dropna().unique()),
+        "complemento": sorted(df["complemento"].dropna().unique())
+    }
