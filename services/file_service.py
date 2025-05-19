@@ -69,10 +69,24 @@ def mostrar_arquivos(conn, caminho_atual, subpastas):
 
     df = buscar_arquivos(conn, caminho_atual, termo_busca, nomes_filtro, filtros_selecionados, (pagina - 1) * por_pagina, por_pagina)
 
+    selecionados = st.session_state.get("selecionados", set())
+    novos_selecionados = set()
+
     st.markdown(f"📄 **{total} arquivo(s)** — Página {pagina} de {total_paginas}")
     for _, arq in df.iterrows():
-        st.markdown(f"📄 **{arq['nome']}** — `{arq['tamanho'] / 1024:.1f} KB`")
-        st.download_button("⬇️ Simular Download", data=b"dados", file_name=arq["nome"], key=arq["path"])
+        chave_checkbox = f"check_{arq['path']}"
+        if st.checkbox(f"📄 {arq['nome']} — `{arq['tamanho'] / 1024:.1f} KB`", key=chave_checkbox):
+            novos_selecionados.add(arq["path"])
+
+    # Atualiza os selecionados
+    st.session_state["selecionados"] = st.session_state.get("selecionados", set()).union(novos_selecionados)
+
+    if st.session_state.get("selecionados"):
+        if st.button("➡️ Prosseguir"):
+            st.session_state["pagina_destino"] = "processamento"
+            st.rerun()
+    else:
+        st.info("Selecione pelo menos um arquivo para continuar.")
 
     col1, col2, col3 = st.columns([1, 2, 1])
     with col1:
@@ -89,3 +103,5 @@ def mostrar_arquivos(conn, caminho_atual, subpastas):
         st.markdown("### ℹ️ Tradução de Setores")
         for _, row in traducoes_df.iterrows():
             st.markdown(f"- `{row['sigla_sistema']}` → {row['sistema_traducao']}")
+    
+    

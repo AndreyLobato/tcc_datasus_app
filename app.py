@@ -5,14 +5,23 @@ from database.db import conectar
 from database.queries import get_subpastas
 
 def main():
-    st.set_page_config("Catálogo de Arquivos", layout="wide")
+    st.set_page_config("Catálogo de Arquivos - DATASUS", layout="wide")
     show_header()
 
     conn = conectar()
-    caminho_atual = st.session_state.get("caminho_atual", "/")
-    subpastas = get_subpastas(conn, caminho_atual)
+    # caminho_atual = st.session_state.get("caminho_atual", "/")
+    # subpastas = get_subpastas(conn, caminho_atual)
 
-    mostrar_arquivos(conn, caminho_atual, subpastas)
+    # mostrar_arquivos(conn, caminho_atual, subpastas)
+    if "caminho_atual" not in st.session_state:
+        st.session_state["caminho_atual"] = "/"
+    if "pagina_destino" not in st.session_state:
+        st.session_state["pagina_destino"] = "principal"
+
+    if st.session_state["pagina_destino"] == "principal":
+        caminho = st.session_state["caminho_atual"]
+        subpastas = get_subpastas(conn, caminho)
+        mostrar_arquivos(conn, caminho, subpastas)
 
 if __name__ == "__main__":
     main()
