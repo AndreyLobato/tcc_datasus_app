@@ -48,30 +48,6 @@ def mostrar_arquivos_selecionados(conn):
         st.session_state["selecionados"] = set()
         st.rerun()
 
-#def mostrar_processamento(conn):
-    
-#     st.title("🔧 Processamento dos Arquivos Selecionados")
-
-#     selecionados = st.session_state.get("selecionados", [])
-    
-#     st.write("Arquivos selecionados:")
-#     for path in selecionados:
-#         st.markdown(f"- `{path}`")
-
-#         df = buscar_tamanhos_por_path(conn, selecionados)
-
-#     # Exibir arquivos com tamanho individual
-#     for _, row in df.iterrows():
-#         tamanho_kb = row['tamanho'] / 1024
-#         st.markdown(f"- 📄 **{row['nome']}** — `{tamanho_kb:.1f} KB`")
-    
-#     tamanho_total = df["tamanho"].sum()
-#     st.info(f"📦 **Tamanho total dos arquivos:** {formatar_tamanho(tamanho_total)}")
-
-#     # if st.button("🔙 Voltar"):
-#     #     st.session_state["pagina_destino"] = "navegacao"
-#     #     st.rerun()
-
 def main():
 
     conn = conectar()

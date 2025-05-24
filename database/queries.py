@@ -112,13 +112,12 @@ def obter_traducoes_distintas(conn):
 def buscar_tamanhos_por_path(conn, lista_paths):
     if not lista_paths:
         return pd.DataFrame(columns=["nome", "path", "tamanho"])
-
+    
     placeholders = ",".join(["?"] * len(lista_paths))
     query = f"""
-        SELECT nome, parent_path_new as path, tamanho
+        SELECT nome, path, tamanho
         FROM arquivos
-        WHERE parent_path_new  IN ({placeholders})
-        and parent_path_new is not null
+        WHERE path IN ({placeholders})
     """
-    df = pd.read_sql_query(query, conn, params=lista_paths)
+    df = pd.read_sql_query(query, conn, params=list(lista_paths))
     return df
