@@ -96,3 +96,13 @@ def mostrar_traducoes_setores(conn):
         st.markdown("### ℹ️ Tradução de Setores")
         for _, row in traducoes_df.iterrows():
             st.markdown(f"- `{row['sigla_sistema']}` → {row['sistema_traducao']}")
+
+def formatar_tamanho(bytes):
+    kb = bytes / 1024
+    if kb < 1024:
+        return f"{kb:.1f} KB"
+    mb = kb / 1024
+    if mb < 1024:
+        return f"{mb:.1f} MB"
+    gb = mb / 1024
+    return f"{gb:.2f} GB"

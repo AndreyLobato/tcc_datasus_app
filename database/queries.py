@@ -45,8 +45,6 @@ def buscar_arquivos(conn, caminho, termo, nomes_selecionados, filtros_extra, off
     
     return pd.read_sql_query(query, conn, params=params)
 
-
-
 def contar_arquivos(conn, caminho, termo, nomes_selecionados, filtros_extra):
     query = """
         SELECT COUNT(*) as total FROM arquivos ar 
@@ -68,7 +66,6 @@ def contar_arquivos(conn, caminho, termo, nomes_selecionados, filtros_extra):
             params.extend(valores)
 
     return pd.read_sql_query(query, conn, params=params)["total"].iloc[0]
-
 
 def listar_nomes_arquivos_unicos(conn, caminho):
     """Retorna lista única de nomes de arquivos no caminho atual."""
@@ -111,3 +108,17 @@ def obter_traducoes_distintas(conn):
         ORDER BY ar.sigla_sistema
     """
     return pd.read_sql_query(query, conn)
+
+def buscar_tamanhos_por_path(conn, lista_paths):
+    if not lista_paths:
+        return pd.DataFrame(columns=["nome", "path", "tamanho"])
+
+    placeholders = ",".join(["?"] * len(lista_paths))
+    query = f"""
+        SELECT nome, parent_path_new as path, tamanho
+        FROM arquivos
+        WHERE parent_path_new  IN ({placeholders})
+        and parent_path_new is not null
+    """
+    df = pd.read_sql_query(query, conn, params=lista_paths)
+    return df

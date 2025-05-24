@@ -6,7 +6,6 @@ from ui.layout import show_header
 from services.file_service import mostrar_arquivos
 from database.db import conectar
 from database.queries import get_subpastas
-from pages.processamento import mostrar_processamento
 
 def main():
    
@@ -17,16 +16,8 @@ def main():
     st.session_state["caminho_atual"] = caminho_atual
 
     pagina = st.session_state.get("pagina_destino", "navegacao")
-
-    if pagina == "navegacao":
-        subpastas = get_subpastas(conn, caminho_atual)
-        mostrar_arquivos(conn, caminho_atual, subpastas)
-
-    elif pagina == "processamento":
-        mostrar_processamento(conn)
-
-    else:
-        st.error("Página não encontrada.")
+    subpastas = get_subpastas(conn, caminho_atual)
+    mostrar_arquivos(conn, caminho_atual, subpastas)
 
 if __name__ == "__main__":
     main()
