@@ -13,9 +13,9 @@ def mostrar_arquivos_selecionados(conn):
 
     selecionados = st.session_state.get("selecionados", [])
 
-    for caminho in selecionados:
-        nome_arquivo = os.path.basename(caminho)
-        st.markdown(f"📄 `{nome_arquivo}`")
+    # for caminho in selecionados:
+    #     nome_arquivo = os.path.basename(caminho)
+    #     st.markdown(f"📄 `{nome_arquivo}`")
 
     df = buscar_tamanhos_por_path(conn, selecionados)
 
