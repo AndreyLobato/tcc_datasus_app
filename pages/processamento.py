@@ -1,27 +1,33 @@
 # pages/1_processamento.py
 
 import streamlit as st
+import os
 
 def mostrar_arquivos_selecionados():
     st.title("📦 Arquivos Selecionados")
 
     selecionados = st.session_state.get("selecionados", [])
 
-    # if not selecionados:
-    #     st.warning("Nenhum arquivo selecionado.")
-    #     if st.button("🔙 Voltar"):
-    #         st.session_state["pagina_destino"] = "navegacao"
-    #         st.rerun()
-    #     return
-
     for caminho in selecionados:
-        st.markdown(f"📄 `{caminho}`")
+        nome_arquivo = os.path.basename(caminho)
+        st.markdown(f"📄 `{nome_arquivo}`")
+    st.markdown("### 🔄 Converter arquivos selecionados")
 
-    # Aqui você pode colocar mais ações, como conversão, upload, etc.
-    #st.success("Aqui você pode realizar ações com os arquivos selecionados.")
-    # if st.button("🔙 Voltar"):
-    #     st.session_state["pagina_destino"] = "principal"
-    #     st.rerun()
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        if st.button("📄 CSV"):
+            st.success("Conversão para CSV iniciada (lógica será implementada).")
+
+    with col2:
+        if st.button("🧪 Parquet"):
+            st.success("Conversão para Parquet iniciada (lógica será implementada).")
+
+    with col3:
+        if st.button("📦 ORC"):
+            st.success("Conversão para ORC iniciada (lógica será implementada).")
+
+
     if st.button("🗑️ Limpar Seleção"):
         st.session_state["selecionados"] = set()
         st.rerun()

@@ -1,6 +1,5 @@
 import streamlit as st
 
-# 🛠️ Esta linha deve vir antes de QUALQUER outro comando streamlit
 st.set_page_config("Catálogo de Arquivos - DATASUS", layout="wide")
 
 from ui.layout import show_header
@@ -23,7 +22,6 @@ def main():
         subpastas = get_subpastas(conn, caminho_atual)
         mostrar_arquivos(conn, caminho_atual, subpastas)
 
-        
     elif pagina == "processamento":
         mostrar_processamento(conn)
 
