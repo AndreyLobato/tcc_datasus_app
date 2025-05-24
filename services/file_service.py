@@ -79,14 +79,7 @@ def mostrar_lista_arquivos(conn, caminho_atual, filtros_selecionados):
             novos_selecionados.add(arq["path"])
 
     st.session_state["selecionados"] = selecionados.union(novos_selecionados)
-
-    if st.session_state.get("selecionados"):
-        if st.button("➡️ Prosseguir"):
-            st.session_state["pagina_destino"] = "processamento"
-            st.rerun()
-    else:
-        st.info("Selecione pelo menos um arquivo para continuar.")
-
+    
     col1, _, col3 = st.columns([1, 2, 1])
     with col1:
         if st.button("⬅️ Anterior") and pagina > 1:

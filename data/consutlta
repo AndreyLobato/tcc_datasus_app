@@ -1,0 +1,11 @@
+select distinct  ano, mes, ar.nome,path, ar.path_new,ar.parent_path_new, sistema_traducao, subsistema_traducao
+from arquivos ar 
+left join de_para dp on ar.sigla_sistema = dp.sigla_sistema and ar.sigla_subsistema = dp.sigla_subsistema
+where ano = 2008 and mes =1
+and ar.sigla_sistema = "SISCAN"
+/*
+select distinct  ar.*, sistema_traducao, subsistema_traducao
+from arquivos ar 
+left join de_para dp on ar.sigla_sistema = dp.sigla_sistema and ar.sigla_subsistema = dp.sigla_subsistema
+*/
+
