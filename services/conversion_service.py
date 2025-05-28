@@ -21,7 +21,7 @@ def converter_para_parquet(caminho_local, nome_arquivo, destino):
         raise ValueError("Formato não suportado para conversão.")
 
     # Leitura do arquivo DBF
-    df = pd.DataFrame(iter(dbfread.DBF(caminho_para_ler)))
+    df = pd.DataFrame(iter(dbfread.DBF(caminho_para_ler,encoding="latin1")))
     
     # Salva como parquet
     nome_sem_extensao = os.path.splitext(nome_arquivo)[0]
@@ -43,7 +43,7 @@ def converter_para_csv(caminho_local, nome_arquivo, destino):
     else:
         raise ValueError("Formato não suportado para conversão.")
 
-    df = pd.DataFrame(iter(dbfread.DBF(caminho_para_ler)))
+    df = pd.DataFrame(iter(dbfread.DBF(caminho_para_ler,encoding="latin1")))
 
     nome_sem_extensao = os.path.splitext(nome_arquivo)[0]
     csv_path = os.path.join(destino, f"{nome_sem_extensao}.csv")
@@ -64,7 +64,7 @@ def converter_para_orc(caminho_local, nome_arquivo, destino):
     else:
         raise ValueError("Formato não suportado para conversão.")
 
-    df = pd.DataFrame(iter(dbfread.DBF(caminho_para_ler)))
+    df = pd.DataFrame(iter(dbfread.DBF(caminho_para_ler,encoding="latin1")))
     
     nome_sem_extensao = os.path.splitext(nome_arquivo)[0]
     orc_path = os.path.join(destino, f"{nome_sem_extensao}.orc")
