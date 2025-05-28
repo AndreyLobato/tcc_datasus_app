@@ -6,16 +6,14 @@ import pandas as pd
 from database.db import conectar
 from database.queries import buscar_tamanhos_por_path 
 from services.file_service import formatar_tamanho
+from services.conversion_service import baixar_arquivo_ftp, converter_para_parquet, converter_para_csv, converter_para_orc
+from ftplib import FTP
 
 def mostrar_arquivos_selecionados(conn):
 
     st.title("📦 Arquivos Selecionados")
 
     selecionados = st.session_state.get("selecionados", [])
-
-    # for caminho in selecionados:
-    #     nome_arquivo = os.path.basename(caminho)
-    #     st.markdown(f"📄 `{nome_arquivo}`")
 
     df = buscar_tamanhos_por_path(conn, selecionados)
 
@@ -31,22 +29,45 @@ def mostrar_arquivos_selecionados(conn):
 
     col1, col2, col3 = st.columns(3)
 
-    with col1:
-        if st.button("📄 CSV"):
-            st.success("Conversão para CSV iniciada (lógica será implementada).")
+    if not df.empty:
+            with FTP('ftp.datasus.gov.br') as ftp:
+                ftp.login()
 
-    with col2:
-        if st.button("🧪 Parquet"):
-            st.success("Conversão para Parquet iniciada (lógica será implementada).")
+                with col1:
+                    if st.button("📄 CSV"):
+                        with st.spinner("Convertendo para CSV..."):
+                            for _, row in df.iterrows():
+                                local_temp = os.path.join("temp", "arquivos_baixados", row['nome'])
+                                baixar_arquivo_ftp(ftp, row['path'], local_temp)
+                                converter_para_csv(local_temp, row['nome'], "convertidos/csv")
+                            st.success("Conversão para CSV concluída!")
 
-    with col3:
-        if st.button("📦 ORC"):
-            st.success("Conversão para ORC iniciada (lógica será implementada).")
+                with col2:
+                    if st.button("🧪 Parquet"):
+                        with st.spinner("Convertendo para Parquet..."):
+                            for _, row in df.iterrows():
+                                local_temp = os.path.join("temp", "arquivos_baixados", row['nome'])
+                                baixar_arquivo_ftp(ftp, row['path'], local_temp)
+                                converter_para_parquet(local_temp, row['nome'], "convertidos/parquet")
+                            st.success("Conversão para Parquet concluída!")
+
+                with col3:
+                    if st.button("📦 ORC"):
+                        with st.spinner("Convertendo para ORC..."):
+                            for _, row in df.iterrows():
+                                local_temp = os.path.join("temp", "arquivos_baixados", row['nome'])
+                                baixar_arquivo_ftp(ftp, row['path'], local_temp)
+                                converter_para_orc(local_temp, row['nome'], "convertidos/orc")
+                            st.success("Conversão para ORC concluída!")
 
 
     if st.button("🗑️ Limpar Seleção"):
         st.session_state["selecionados"] = set()
         st.rerun()
+
+def baixar_arquivos(): 
+    pass
+
 
 def main():
 

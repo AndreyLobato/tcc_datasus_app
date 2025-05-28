@@ -1,8 +1,9 @@
 # Lógica de negócio relacionada a arquivos (exibir, navegar, etc)
 
 import streamlit as st
-from database.queries import buscar_arquivos, contar_arquivos,listar_nomes_arquivos_unicos,listar_filtros_unicos,obter_traducoes_distintas
+from database.queries import buscar_arquivos, contar_arquivos,listar_filtros_unicos,obter_traducoes_distintas
 import math
+from ftplib import FTP
 
 # Conversão segura dos filtros para inteiros
 def filtrar_inteiros(valores):
@@ -106,3 +107,4 @@ def formatar_tamanho(bytes):
         return f"{mb:.1f} MB"
     gb = mb / 1024
     return f"{gb:.2f} GB"
+

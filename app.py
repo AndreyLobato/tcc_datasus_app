@@ -1,14 +1,11 @@
 import streamlit as st
-
-st.set_page_config("Catálogo de Arquivos - DATASUS", layout="wide")
-
 from ui.layout import show_header
 from services.file_service import mostrar_arquivos
 from database.db import conectar
 from database.queries import get_subpastas
 
 def main():
-   
+    st.set_page_config("Catálogo de Arquivos - DATASUS", layout="wide")   
     show_header()
 
     conn = conectar()
