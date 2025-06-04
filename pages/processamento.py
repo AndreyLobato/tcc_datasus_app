@@ -39,7 +39,7 @@ def mostrar_arquivos_selecionados(conn):
                             for _, row in df.iterrows():
                                 local_temp = os.path.join("temp", "arquivos_baixados", row['nome'])
                                 baixar_arquivo_ftp(ftp, row['path'], local_temp)
-                                converter_para_csv(local_temp, row['nome'], "convertidos/csv")
+                                converter_para_csv(local_temp, row['nome'], "convertidos")
                             st.success("Conversão para CSV concluída!")
 
                 with col2:
@@ -48,7 +48,7 @@ def mostrar_arquivos_selecionados(conn):
                             for _, row in df.iterrows():
                                 local_temp = os.path.join("temp", "arquivos_baixados", row['nome'])
                                 baixar_arquivo_ftp(ftp, row['path'], local_temp)
-                                converter_para_parquet(local_temp, row['nome'], "convertidos/parquet")
+                                converter_para_parquet(local_temp, row['nome'], "convertidos")
                             st.success("Conversão para Parquet concluída!")
 
                 with col3:
@@ -57,16 +57,29 @@ def mostrar_arquivos_selecionados(conn):
                             for _, row in df.iterrows():
                                 local_temp = os.path.join("temp", "arquivos_baixados", row['nome'])
                                 baixar_arquivo_ftp(ftp, row['path'], local_temp)
-                                converter_para_orc(local_temp, row['nome'], "convertidos/orc")
+                                converter_para_orc(local_temp, row['nome'], "convertidos")
                             st.success("Conversão para ORC concluída!")
+    
+            st.markdown("### ⬇️ Arquivos convertidos disponíveis para download")
 
+            pasta_convertidos = "convertidos"
+            arquivos_convertidos = os.listdir(pasta_convertidos)
+
+            for nome_arquivo in arquivos_convertidos:
+                caminho = os.path.join(pasta_convertidos, nome_arquivo)
+
+                with open(caminho, "rb") as f:
+                    conteudo = f.read()
+                    st.download_button(
+                        label=f"📥 Baixar {nome_arquivo}",
+                        data=conteudo,
+                        file_name=nome_arquivo,
+                        mime="application/octet-stream"
+                    )
 
     if st.button("🗑️ Limpar Seleção"):
         st.session_state["selecionados"] = set()
         st.rerun()
-
-def baixar_arquivos(): 
-    pass
 
 
 def main():
