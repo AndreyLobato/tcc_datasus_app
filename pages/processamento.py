@@ -2,6 +2,8 @@
 
 import streamlit as st
 import os
+import zipfile
+import io
 import pandas as pd
 from database.db import conectar
 from database.queries import buscar_tamanhos_por_path 
@@ -26,8 +28,12 @@ def mostrar_arquivos_selecionados(conn):
     st.info(f"📦 **Tamanho total dos arquivos:** {formatar_tamanho(tamanho_total)}")
 
     st.markdown("### 🔄 Converter arquivos selecionados")
-
+    
     col1, col2, col3 = st.columns(3)
+
+    if st.button("🗑️ Limpar Selecionados Para Conversão"):
+        st.session_state["selecionados"] = set()
+        st.rerun()
 
     if not df.empty:
             with FTP('ftp.datasus.gov.br') as ftp:
@@ -65,11 +71,41 @@ def mostrar_arquivos_selecionados(conn):
             pasta_convertidos = "convertidos"
             arquivos_convertidos = os.listdir(pasta_convertidos)
 
-            for nome_arquivo in arquivos_convertidos:
-                caminho = os.path.join(pasta_convertidos, nome_arquivo)
+            # Listar arquivos
+            arquivos_convertidos = sorted(os.listdir(pasta_convertidos))
 
-                with open(caminho, "rb") as f:
-                    conteudo = f.read()
+            # Botão para selecionar todos
+            if "checklist_selecionados" not in st.session_state:
+                st.session_state["checklist_selecionados"] = {nome: False for nome in arquivos_convertidos}
+
+            if st.button("✅ Selecionar todos"):
+                for nome in arquivos_convertidos:
+                    st.session_state["checklist_selecionados"][nome] = True
+                st.rerun()
+
+            # Botão para limpar seleção
+            if st.button("🗑️ Limpar selecionados para download"):
+                for nome in arquivos_convertidos:
+                    st.session_state["checklist_selecionados"][nome] = False
+                st.rerun()
+
+            # Checklist manual com checkboxes individuais
+            selecionados = []
+            for nome in arquivos_convertidos:
+                marcado = st.checkbox(f"{nome}", value=st.session_state["checklist_selecionados"].get(nome, False), key=f"chk_{nome}")
+                st.session_state["checklist_selecionados"][nome] = marcado
+                if marcado:
+                    selecionados.append(nome)
+
+            # Mostrar botão de download se houver selecionados
+            if selecionados:
+                st.markdown("### 📦 Baixar arquivos selecionados")
+
+                # Botões individuais
+                for nome_arquivo in selecionados:
+                    caminho = os.path.join(pasta_convertidos, nome_arquivo)
+                    with open(caminho, "rb") as f:
+                        conteudo = f.read()
                     st.download_button(
                         label=f"📥 Baixar {nome_arquivo}",
                         data=conteudo,
@@ -77,9 +113,22 @@ def mostrar_arquivos_selecionados(conn):
                         mime="application/octet-stream"
                     )
 
-    if st.button("🗑️ Limpar Seleção"):
-        st.session_state["selecionados"] = set()
-        st.rerun()
+                # Botão ZIP
+                buffer = io.BytesIO()
+                with zipfile.ZipFile(buffer, "w") as zipf:
+                    for nome_arquivo in selecionados:
+                        caminho = os.path.join(pasta_convertidos, nome_arquivo)
+                        zipf.write(caminho, arcname=nome_arquivo)
+
+                buffer.seek(0)
+                st.download_button(
+                    label="📦 Baixar ZIP com selecionados",
+                    data=buffer,
+                    file_name="arquivos_convertidos.zip",
+                    mime="application/zip"
+                )
+
+
 
 
 def main():

@@ -68,10 +68,10 @@ def converter_para_orc(caminho_local, nome_arquivo, destino):
     
     nome_sem_extensao = os.path.splitext(nome_arquivo)[0]
     orc_path = os.path.join(destino, f"{nome_sem_extensao}.orc")
-
-    table = pa.Table.from_pandas(df)
-    with open(orc_path, "wb") as f:
-        orc.write_table(table, f)
+    df.to_orc(orc_path, index=False)
+    #table = pa.Table.from_pandas(df)
+    #with open(orc_path, "wb") as f:
+    #    orc.write_table(table, f)
 
     return orc_path
 
