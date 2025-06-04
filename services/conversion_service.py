@@ -76,6 +76,13 @@ def converter_para_orc(caminho_local, nome_arquivo, destino):
     return orc_path
 
 def baixar_arquivo_ftp(ftp: FTP, remote_path: str, local_path: str):
+
     os.makedirs(os.path.dirname(local_path), exist_ok=True)
     with open(local_path, 'wb') as f:
         ftp.retrbinary(f"RETR {remote_path}", f.write)
+
+def limpar_pasta(pasta):
+    for arquivo in os.listdir(pasta):
+        caminho_arquivo = os.path.join(pasta, arquivo)
+        if os.path.isfile(caminho_arquivo):
+            os.remove(caminho_arquivo)
