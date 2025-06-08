@@ -1,0 +1,151 @@
+comecei a rodar 02h 
+Parou com erro 15h34
+
+(tccenv) andrey@andrey-Inspiron-3501:~/Projetos/TCC$ /home/andrey/Projetos/TCC/tccenv/bin/python /home/andrey/Projetos/TCC/arquivos_py/percorre_gera_csv.py
+09-17-13  10:10AM       <DIR>          ANS
+08-24-11  04:31PM       <DIR>          CIH
+09-24-19  01:20PM       <DIR>          200801_201012
+03-17-25  10:23AM       <DIR>          Auxiliar
+02-24-18  07:48AM       <DIR>          Dados
+09-24-19  01:20PM       <DIR>          dados2
+08-24-11  04:31PM       <DIR>          Doc
+03-06-12  09:46AM       <DIR>          CIHA
+03-15-13  12:05PM       <DIR>          201101_
+04-12-23  07:40PM       <DIR>          Auxiliar
+04-08-25  03:17PM       <DIR>          Dados
+02-24-18  07:48AM       <DIR>          Doc
+05-25-23  09:09AM       <DIR>          CMD
+09-26-19  11:59AM       <DIR>          201701_
+09-26-19  11:59AM       <DIR>          Auxiliar
+09-26-19  11:59AM       <DIR>          Dados
+09-26-19  12:00PM       <DIR>          Doc
+04-04-18  04:29PM       <DIR>          Auxiliar
+09-24-19  05:58PM       <DIR>          Dados
+07-18-18  02:53PM       <DIR>          Doc
+07-07-14  10:51AM       <DIR>          CNES
+11-10-16  10:25AM       <DIR>          200508_
+03-17-25  11:48AM       <DIR>          Auxiliar
+07-02-24  09:35AM       <DIR>          Dados
+03-14-25  03:15PM       <DIR>          DC
+08-18-21  11:10AM       <DIR>          EE
+03-14-25  03:15PM       <DIR>          EF
+03-14-25  03:15PM       <DIR>          EP
+03-14-25  03:15PM       <DIR>          EQ
+03-14-25  03:15PM       <DIR>          GM
+03-14-25  03:15PM       <DIR>          HB
+03-14-25  03:15PM       <DIR>          IN
+03-14-25  03:15PM       <DIR>          LT
+03-14-25  03:15PM       <DIR>          PF
+03-14-25  03:15PM       <DIR>          RC
+03-14-25  03:15PM       <DIR>          SR
+04-04-25  01:29PM       <DIR>          ST
+02-24-18  07:48AM       <DIR>          doc
+02-24-18  07:48AM       <DIR>          VersoesAntigas
+02-24-18  07:37AM       <DIR>          CPI
+04-25-24  10:39AM       <DIR>          Dados_Abertos
+10-16-24  04:47PM       <DIR>          SINAN
+03-22-24  03:42PM       <DIR>          Chikungunya
+02-18-25  05:01PM       <DIR>          csv
+02-18-25  05:05PM       <DIR>          json
+02-18-25  05:10PM       <DIR>          xml
+10-15-24  08:28AM       <DIR>          Coqueluche
+04-03-25  03:40PM       <DIR>          csv
+04-03-25  03:40PM       <DIR>          json
+04-03-25  03:40PM       <DIR>          xml
+03-22-24  03:42PM       <DIR>          Dengue
+04-03-25  03:38PM       <DIR>          csv
+04-03-25  03:38PM       <DIR>          json
+04-03-25  03:38PM       <DIR>          xml
+10-24-24  03:07PM       <DIR>          Zikavirus
+02-18-25  05:16PM       <DIR>          csv
+02-18-25  05:16PM       <DIR>          json
+10-24-24  03:23PM       <DIR>          parquet
+02-18-25  05:16PM       <DIR>          xml
+11-06-24  05:05PM       <DIR>          ESUSNOTIFICA
+11-06-24  05:06PM       <DIR>          AUXILIAR
+11-06-24  05:05PM       <DIR>          DADOS
+11-06-24  05:05PM       <DIR>          FINAIS
+11-06-24  05:06PM       <DIR>          PRELIM
+11-19-24  12:05PM       <DIR>          DOCS
+08-23-18  12:16PM       <DIR>          EXTR ESP
+01-07-25  11:37AM       <DIR>          IBGE
+08-29-18  01:08PM       <DIR>          Auxiliar
+02-24-18  07:38AM       <DIR>          censo
+01-07-25  10:20AM       <DIR>          doc
+02-24-18  07:38AM       <DIR>          POP
+01-07-25  11:42AM       <DIR>          POPSVS
+01-07-25  09:40AM       <DIR>          POPTCU
+01-07-25  09:42AM       <DIR>          projpop
+12-12-22  06:02PM       <DIR>          painel_oncologia
+01-17-23  01:31PM       <DIR>          Auxiliar
+02-20-25  04:58PM       <DIR>          Dados
+12-14-22  08:10PM       <DIR>          Doc
+11-11-22  05:21PM       <DIR>          PCE
+11-11-22  05:21PM       <DIR>          Auxiliar
+11-11-22  05:21PM       <DIR>          Dados
+11-21-22  12:58PM       <DIR>          DOCS
+07-06-21  10:47AM       <DIR>          Pesquisas
+05-23-19  05:50PM       <DIR>          PNI
+05-23-19  05:57PM       <DIR>          AUXILIARES
+05-23-19  05:48PM       <DIR>          DADOS
+05-23-19  05:50PM       <DIR>          DOCS
+06-23-21  04:10PM       <DIR>          RESP
+06-23-21  04:10PM       <DIR>          AUXILIAR
+07-01-24  05:33PM       <DIR>          DADOS
+06-25-21  03:52PM       <DIR>          DOCS
+12-10-18  02:14PM       <DIR>          SIASUS
+02-24-18  07:38AM       <DIR>          199407_200712
+08-12-13  02:51PM       <DIR>          Auxiliar
+03-11-25  09:57PM       <DIR>          Dados
+08-12-13  02:53PM       <DIR>          Doc
+06-21-24  10:14AM       <DIR>          200801_
+07-01-24  10:15PM       <DIR>          Auxiliar
+04-08-25  07:11AM       <DIR>          Dados
+08-12-19  05:17PM       <DIR>          Doc
+08-18-10  01:24PM       <DIR>          Anteriores_a_1994
+05-29-15  03:34PM       <DIR>          APAC
+02-24-18  07:48AM       <DIR>          2001
+02-24-18  07:49AM       <DIR>          2002
+02-24-18  07:49AM       <DIR>          2003
+02-24-18  07:49AM       <DIR>          2004
+02-24-18  07:49AM       <DIR>          2005
+02-24-18  07:49AM       <DIR>          2006
+02-24-18  07:49AM       <DIR>          2007
+12-10-18  02:14PM       <DIR>          teste
+07-02-18  02:11PM       <DIR>          SIHSUS
+02-24-18  07:38AM       <DIR>          199201_200712
+08-08-19  04:32PM       <DIR>          Auxiliar
+02-24-18  07:56AM       <DIR>          Dados
+04-17-13  04:15PM       <DIR>          Doc
+10-22-14  10:03AM       <DIR>          2008
+02-24-18  07:57AM       <DIR>          CSV
+02-24-18  07:58AM       <DIR>          XML
+04-08-13  03:34PM       <DIR>          200801_
+02-05-24  06:37PM       <DIR>          Auxiliar
+04-05-25  12:44PM       <DIR>          Dados
+03-11-25  11:39PM       <DIR>          DBC
+03-11-25  11:52PM       <DIR>          DBF
+02-24-18  07:55AM       <DIR>          Doc
+
+Traceback (most recent call last):
+  File "/home/andrey/Projetos/TCC/arquivos_py/percorre_gera_csv.py", line 79, in <module>
+    gerar_csv(ftp, caminho_raiz=REMOTE_DIR,nome_arquivo_csv="df_arquivos_sus.csv")  # Gera o arquivo "arquivos_ftp.csv" no seu diretório local
+  File "/home/andrey/Projetos/TCC/arquivos_py/percorre_gera_csv.py", line 60, in gerar_csv
+    dados = listar_ftp_recursivo(ftp, caminho_raiz)
+  File "/home/andrey/Projetos/TCC/arquivos_py/percorre_gera_csv.py", line 41, in listar_ftp_recursivo
+    listar_ftp_recursivo(ftp, caminho_completo, resultado)
+  File "/home/andrey/Projetos/TCC/arquivos_py/percorre_gera_csv.py", line 41, in listar_ftp_recursivo
+    listar_ftp_recursivo(ftp, caminho_completo, resultado)
+  File "/home/andrey/Projetos/TCC/arquivos_py/percorre_gera_csv.py", line 41, in listar_ftp_recursivo
+    listar_ftp_recursivo(ftp, caminho_completo, resultado)
+  File "/home/andrey/Projetos/TCC/arquivos_py/percorre_gera_csv.py", line 18, in listar_ftp_recursivo
+    ftp.cwd(path)
+  File "/usr/lib/python3.10/ftplib.py", line 625, in cwd
+    return self.voidcmd(cmd)
+  File "/usr/lib/python3.10/ftplib.py", line 285, in voidcmd
+    self.putcmd(cmd)
+  File "/usr/lib/python3.10/ftplib.py", line 207, in putcmd
+    self.putline(line)
+  File "/usr/lib/python3.10/ftplib.py", line 202, in putline
+    self.sock.sendall(line.encode(self.encoding))
+BrokenPipeError: [Errno 32] Broken pipe

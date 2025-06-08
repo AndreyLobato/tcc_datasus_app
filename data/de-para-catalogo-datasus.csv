@@ -1,0 +1,117 @@
+sistema_traducao,sigla_sistema,sigla_subsistema,subsistema_traducao
+CIH - Sistema de Comunicação de Informação Hospitalar,CIH,CR,CR - Comunicação de Internação Hospitalar
+CIHA - Sistema de Comunicação de Informação Hospitalar e Ambulatorial,CIHA,CIHA,CIHA - Comunicação de Internação Hospitalar e Ambulatorial
+CMD - Conjunto Mínimo de Dados,CMD,CT,CT - Por Contato Assistencial
+CMD - Conjunto Mínimo de Dados,CMD,PR,PR - Por Procedimento
+CNES - Cadastro Nacional de Estabelecimentos de Saúde,CNES,EP,EP - Equipes
+CNES - Cadastro Nacional de Estabelecimentos de Saúde,CNES,DC,DC - Dados Complementares
+CNES - Cadastro Nacional de Estabelecimentos de Saúde,CNES,EE,EE - Estabelecimento de Ensino
+CNES - Cadastro Nacional de Estabelecimentos de Saúde,CNES,EF,EF - Estabelecimento Filantrópico
+CNES - Cadastro Nacional de Estabelecimentos de Saúde,CNES,EQ,EQ - Equipamentos
+CNES - Cadastro Nacional de Estabelecimentos de Saúde,CNES,GM,GM - Gestão e Metas
+CNES - Cadastro Nacional de Estabelecimentos de Saúde,CNES,HB,HB - Habilitação
+CNES - Cadastro Nacional de Estabelecimentos de Saúde,CNES,IN,IN - Incentivos
+CNES - Cadastro Nacional de Estabelecimentos de Saúde,CNES,LT,LT - Leitos
+CNES - Cadastro Nacional de Estabelecimentos de Saúde,CNES,PF,PF - Profissional
+CNES - Cadastro Nacional de Estabelecimentos de Saúde,CNES,RC,RC - Regra Contratual
+CNES - Cadastro Nacional de Estabelecimentos de Saúde,CNES,SR,SR - Serviço Especializado
+CNES - Cadastro Nacional de Estabelecimentos de Saúde,CNES,ST,ST - Estabelecimentos
+PCE - Programa de Controle da Esquistossomose,PCE,PCE,PCE - Programa de Controle da Esquistossomose
+PNI - Programa Nacional de Imunizações,PNI,CPNI,"CPNI - Câmara Permanente do Programa Nacional de Imunizações,"
+PNI - Programa Nacional de Imunizações,PNI,DPNI,DPNI - Doenças Pneumocócicas Não Invasivas
+PO - Painel de Oncologia – desde 2013,PO,PO,PO - Painel de Oncologia
+RESP - Notificações de casos suspeitos de SCZ – desde 2015,RESP,RESP,RESP - Notificações de casos suspeitos de SCZ
+SIASUS - Sistema de Informações Ambulatoriais do SUS,SIASUS,ABO,ABO - APAC Acompanhamento Pós Cirurgia Bariátrica
+SIASUS - Sistema de Informações Ambulatoriais do SUS,SIASUS,ACF,ACF - APAC Confeção de Fístula Arteriovenosa
+SIASUS - Sistema de Informações Ambulatoriais do SUS,SIASUS,AD,AD - APAC de Laudos Diversos
+SIASUS - Sistema de Informações Ambulatoriais do SUS,SIASUS,AM,AM - APAC de Medicamentos
+SIASUS - Sistema de Informações Ambulatoriais do SUS,SIASUS,AMP,AMP - APAC de Medicamentos 
+SIASUS - Sistema de Informações Ambulatoriais do SUS,SIASUS,AN,AN - APAC de Nefrologia
+SIASUS - Sistema de Informações Ambulatoriais do SUS,SIASUS,AQ,AQ - APAC de Quimioterapia
+SIASUS - Sistema de Informações Ambulatoriais do SUS,SIASUS,AR,AR - APAC de Radioterapia
+SIASUS - Sistema de Informações Ambulatoriais do SUS,SIASUS,ATD,ATD - APAC Tratamento Dialítico
+SIASUS - Sistema de Informações Ambulatoriais do SUS,SIASUS,BI,BI - Boletim de Produção Ambulatorial
+SIASUS - Sistema de Informações Ambulatoriais do SUS,SIASUS,PA,PA - Produção Ambulatorial
+SIASUS - Sistema de Informações Ambulatoriais do SUS,SIASUS,AB,AB - APAC de Acompanhamento a Cirurgia Bariátrica
+SIASUS - Sistema de Informações Ambulatoriais do SUS,SIASUS,PS,PS - Psicossocial
+SIASUS - Sistema de Informações Ambulatoriais do SUS,SIASUS,SAD,SAD - Atenção Domiciliar
+SIHSUS - Sistemas de Informações Hospitalares do SUS,SIHSUS,ER,ER - AIH Rejeitadas com código de erro
+SIHSUS - Sistemas de Informações Hospitalares do SUS,SIHSUS,RD,RD - AIH Reduzida
+SIHSUS - Sistemas de Informações Hospitalares do SUS,SIHSUS,RJ,RJ - AIH Rejeitadas
+SIHSUS - Sistemas de Informações Hospitalares do SUS,SIHSUS,SP,SP - Serviços Profissionais
+SIHSUS - Sistemas de Informações Hospitalares do SUS,SIHSUS,MT,MT - Não Identificado - Agregado Brasil
+SIHSUS - Sistemas de Informações Hospitalares do SUS,SIHSUS,CH,CH - Não Identificado - Agregado Brasil
+SIHSUS - Sistemas de Informações Hospitalares do SUS,SIHSUS,CM,CM - Não Identificado - Agregado Brasil
+SIM - Sistema de Informações de Mortalidade,SIM,DO,DO - Declarações de Óbito
+SIM - Sistema de Informações de Mortalidade,SIM,DOEXT,DOEXT - Declarações de Óbitos por causas externas
+SIM - Sistema de Informações de Mortalidade,SIM,DOFET,DOFET - Declarações de Óbitos fetais
+SIM - Sistema de Informações de Mortalidade,SIM,DOINF,DOINF - Declarações de Óbitos infantis
+SIM - Sistema de Informações de Mortalidade,SIM,DOMAT,DOMAT - Declarações de Óbitos maternos
+SIM - Sistema de Informações de Mortalidade,SIM,DOREXT,DOREXT - Mortalidade de residentes no exterior
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,ACBI,ACBI - Acidente de trabalho com material biológico
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,ACGR,ACGR - Acidente de trabalho
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,AIDA,AIDA - AIDS Adulto
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,AIDC,AIDC - AIDS Criança
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,ANIM,ANIM - Acidente por Animais Peçonhentos
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,ANTR,ANTR - Atendimento Antirrabico
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,BOTU,BOTU - Botulismo
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,CANC,CANC - Cancêr relacionado ao trabalho
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,CHAG,CHAG - Doença de Chagas Aguda
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,CHIK,CHIK - Febre de Chikungunya
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,COLE,COLE - Cólera
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,COQU,COQU - Coqueluche
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,DENG,DENG - Dengue
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,DERM,DERM - Dermatoses ocupacionais
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,DIFT,DIFT - Difteria
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,ESPO,ESPO - Esporotricose (Epizootia)
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,ESQU,ESQU - Esquistossomose
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,EXAN,EXAN - Doença exantemáticas
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,FMAC,FMAC - Febre Maculosa
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,FTIF,FTIF - Febre Tifóide
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,HANS,HANS - Hanseníase
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,HANT,HANT - Hantavirose
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,HEPA,HEPA - Hepatites Virais
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,HIVA,HIVA - HIV Adulto
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,HIVC,HIVC - HIV Criança 
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,HIVE,HIVE - HIV Criança Exposta
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,HIVG,HIVG - HIV Gestante 
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,IEXO,IEXO - Intoxicação Exógena
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,INFL,INFL - Influenza Pandêmica
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,LEIV,LEIV - Leishmaniose Visceral
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,LEPT,LEPT - Leptospirose
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,LER,LER - LER(Lesões por Esforços Repetitivos)
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,LERD,LERD - LER(Lesões por Esforços Repetitivos)/Dort(Distúrbios Osteomusculares Relacionados ao Trabalho)
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,LTAN,LTAN - Leishmaniose Tegumentar Americana
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,MALA,MALA - Malária
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,MENI,MENI - Meningite
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,MENT,MENT - Transtornos mentais relacionados ao trabalho
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,NTRA,NTRA - Notificação de Tracoma
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,PAIR,PAIR - Perda auditiva por ruído relacionado ao trabalho
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,PEST,PEST - Peste
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,PFAN,PFAN - Paralisia Flácida Aguda
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,PNEU,PNEU - Pneumoconioses realacionadas ao trabalho
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,RAIV,RAIV - Raiva
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,ROTA,ROTA - Rotavirus
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,SDTA,SDTA - Surto Doenças Transmitidas por Alimentos
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,SIFA,SIFA - Sífilis Adquirida
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,SIFC,SIFC - Sífilis Congênita
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,SIFG,SIFG - Sífilis em Gestante
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,SRC,SRC - Síndrome da Rubéola Congênia
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,TETA,TETA - Tétano Acidental
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,TETN,TETN - Tétano Neonatal
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,TOXC,TOXC - Toxoplasmose Congênita
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,TOXG,TOXG - Toxoplasmose Gestacional
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,TRAC,TRAC - Inquérito de Tracoma
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,TUBE,TUBE - Tuberculose
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,VARC,VARC - Varicela
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,VIOL,"VIOL - Violência doméstica, sexual e/ou outras violências"
+SINAN - Sistema de Informações de Agravo de Notificação,SINAN,ZIKA,ZIKA - Zika Vírus
+SINASC - Sistema de Informação de Nascidos Vivos,SINASC,DN,DN - Declarações de nascidos vivos
+SINASC - Sistema de Informação de Nascidos Vivos,SINASC,DNEX,DNEX - Declarações de nascidos vivos residentes no exterior
+SINASC - Sistema de Informação de Nascidos Vivos,SINASC,DNR,DNR - Declarações de nascidos vivos residentes no exterior
+SISCAN - Sistema de Informação do Câncer,SISCAN,CC,CC - Citopatológico de Colo de Útero
+SISCAN - Sistema de Informação do Câncer,SISCAN,HC,HC - Histopatológico de Colo de Útero
+SISCAN - Sistema de Informação do Câncer,SISCAN,CM,CM - Citopatológico de Mama
+SISCAN - Sistema de Informação do Câncer,SISCAN,HC,HC - Histopatológico de Mama
+SISCAN - Sistema de Informação do Câncer,SISCAN,MM,MM - Mieloma Múltiplo
+SISPRENATAL - Sistema de Monitoramento e Avaliaçãodo Pré-Natal,SISPRENATAL,PN,PN - Pré-Natal
