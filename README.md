@@ -33,39 +33,37 @@ Em meio à dificuldade atual de lidar com as bases do DATASUS (disponíveis para
 
 ## 🗂️ Estrutura do projeto
 
-tcc_datasus_app/
-│
-├── app.py # Ponto de entrada do Streamlit 
-│
-├── config/ # Configurações globais 
-│ └── settings.py 
-│
-├── convertidos/ # Armazena arquivos convertidos prontos para download 
-│ 
-├── data/ # Dados persistentes e banco local 
-│ └── catalogo_arquivos.db 
-│ 
-├── database/ # Conexão e consultas SQL 
-│ ├── db.py 
-│ └── queries.py 
-│ 
-├── pages/ # Páginas adicionais do Streamlit 
-│ └── processamento.py 
-│ 
-├── services/ # Lógicas de conversão e gerenciamento de arquivos 
-│ ├── conversion_service.py 
-│ └── file_service.py 
-│ 
-├── temp/arquivos_baixados/ # Arquivos temporários baixados antes de conversão 
-│ 
-├── ui/ # Componentes de interface 
-│ ├── components.py 
-│ └── layout.py 
-│ 
-├── utils/ # Utilidades gerais 
-│ └── helpers.py 
-│ 
-└── README.md # Este arquivo 
+tcc_datasus_app/ \
+│\
+├── app.py # Ponto de entrada do Streamlit \
+│\
+├── config/ # Configurações globais \
+│ └── settings.py \
+│\
+├── convertidos/ # Armazena arquivos convertidos prontos para download \
+│ \
+├── data/ # Dados persistentes e banco local \
+│ └── catalogo_arquivos.db \
+│ \
+├── database/ # Conexão e consultas SQL \
+│ ├── db.py \
+│ └── queries.py\ 
+│\ 
+├── pages/ # Páginas adicionais do Streamlit \
+│ └── processamento.py \
+│ \
+├── services/ # Lógicas de conversão e gerenciamento de arquivos \
+│ ├── conversion_service.py \
+│ └── file_service.py \
+│\
+├── temp/arquivos_baixados/ # Arquivos temporários baixados antes de conversão \
+│ \
+├── ui/ # Componentes de interface \
+│ ├── components.py \
+│ └── layout.py \
+│ \
+├── utils/ # Utilidades gerais \
+│ └── helpers.py \
 
 ---
 
