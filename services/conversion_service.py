@@ -1,11 +1,18 @@
 import os
 import pandas as pd
 import pyreaddbc
-import dbfread
+from dbfread import DBF, FieldParser
 from ftplib import FTP
 import pyarrow as pa
 import pyarrow.orc as orc
 
+class CustomFieldParser(FieldParser):
+    def parseD(self, field, data):
+        try:
+            return super().parseD(field, data)
+        except ValueError:
+            # Retorna None em caso de data inválida
+            return None
 
 def converter_para_parquet(caminho_local, nome_arquivo, destino):
     
@@ -21,8 +28,9 @@ def converter_para_parquet(caminho_local, nome_arquivo, destino):
         raise ValueError("Formato não suportado para conversão.")
 
     # Leitura do arquivo DBF
-    df = pd.DataFrame(iter(dbfread.DBF(caminho_para_ler,encoding="latin1")))
-    
+    dbf = DBF(caminho_para_ler, encoding="latin1", parserclass=CustomFieldParser)
+    df = pd.DataFrame(iter(dbf))
+
     # Salva como parquet
     nome_sem_extensao = os.path.splitext(nome_arquivo)[0]
     parquet_path = os.path.join(destino, f"{nome_sem_extensao}.parquet")
@@ -43,7 +51,8 @@ def converter_para_csv(caminho_local, nome_arquivo, destino):
     else:
         raise ValueError("Formato não suportado para conversão.")
 
-    df = pd.DataFrame(iter(dbfread.DBF(caminho_para_ler,encoding="latin1")))
+    dbf = DBF(caminho_para_ler, encoding="latin1", parserclass=CustomFieldParser)
+    df = pd.DataFrame(iter(dbf))
 
     nome_sem_extensao = os.path.splitext(nome_arquivo)[0]
     csv_path = os.path.join(destino, f"{nome_sem_extensao}.csv")
@@ -64,7 +73,8 @@ def converter_para_orc(caminho_local, nome_arquivo, destino):
     else:
         raise ValueError("Formato não suportado para conversão.")
 
-    df = pd.DataFrame(iter(dbfread.DBF(caminho_para_ler,encoding="latin1")))
+    dbf = DBF(caminho_para_ler, encoding="latin1", parserclass=CustomFieldParser)
+    df = pd.DataFrame(iter(dbf))    
     
     nome_sem_extensao = os.path.splitext(nome_arquivo)[0]
     orc_path = os.path.join(destino, f"{nome_sem_extensao}.orc")
