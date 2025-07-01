@@ -1,4 +1,4 @@
-# 📊 TCC DATASUS App
+# 📊 Sistema de Gerenciamento de Dados da Saúde Brasileira
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-ff4b4b?logo=streamlit&logoColor=white)](https://streamlit.io/)
@@ -35,37 +35,37 @@ Em meio à dificuldade atual de lidar com as bases do DATASUS (disponíveis para
 
 tcc_datasus_app/
 │
-├── app.py # Ponto de entrada do Streamlit
+├── app.py # Ponto de entrada do Streamlit 
 │
-├── config/ # Configurações globais
-│ └── settings.py
+├── config/ # Configurações globais 
+│ └── settings.py 
 │
-├── convertidos/ # Armazena arquivos convertidos prontos para download
-│
-├── data/ # Dados persistentes e banco local
-│ └── catalogo_arquivos.db
-│
-├── database/ # Conexão e consultas SQL
-│ ├── db.py
-│ └── queries.py
-│
-├── pages/ # Páginas adicionais do Streamlit
-│ └── processamento.py
-│
-├── services/ # Lógicas de conversão e gerenciamento de arquivos
-│ ├── conversion_service.py
-│ └── file_service.py
-│
-├── temp/arquivos_baixados/ # Arquivos temporários baixados antes de conversão
-│
-├── ui/ # Componentes de interface
-│ ├── components.py
-│ └── layout.py
-│
-├── utils/ # Utilidades gerais
-│ └── helpers.py
-│
-└── README.md # Este arquivo
+├── convertidos/ # Armazena arquivos convertidos prontos para download 
+│ 
+├── data/ # Dados persistentes e banco local 
+│ └── catalogo_arquivos.db 
+│ 
+├── database/ # Conexão e consultas SQL 
+│ ├── db.py 
+│ └── queries.py 
+│ 
+├── pages/ # Páginas adicionais do Streamlit 
+│ └── processamento.py 
+│ 
+├── services/ # Lógicas de conversão e gerenciamento de arquivos 
+│ ├── conversion_service.py 
+│ └── file_service.py 
+│ 
+├── temp/arquivos_baixados/ # Arquivos temporários baixados antes de conversão 
+│ 
+├── ui/ # Componentes de interface 
+│ ├── components.py 
+│ └── layout.py 
+│ 
+├── utils/ # Utilidades gerais 
+│ └── helpers.py 
+│ 
+└── README.md # Este arquivo 
 
 ---
 
@@ -76,18 +76,19 @@ tcc_datasus_app/
 ```bash
 git clone https://github.com/seuusuario/tcc_datasus_app.git
 cd tcc_datasus_app
-
+```
 
 2️⃣ Instale as dependências:
 
 ```bash
 pip install -r requirements.txt
+```
 
 3️⃣ Execute o app:
 
 ```bash
 streamlit run app.py
-
+```
 ☁️ Deploy
 
 Este projeto é compatível com Streamlit Cloud para deploy gratuito e escalável.
