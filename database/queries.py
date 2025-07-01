@@ -22,7 +22,7 @@ def get_subpastas(conn, caminho_atual):
 
 def buscar_arquivos(conn, caminho, termo, nomes_selecionados, filtros_extra, offset, limite):
     query = """
-        SELECT * FROM arquivos ar
+        SELECT distinct * FROM arquivos ar
         LEFT JOIN de_para dp on ar.sigla_sistema = dp.sigla_sistema and ar.sigla_subsistema = dp.sigla_subsistema
         WHERE parent_path_new = ? AND LOWER(nome) LIKE ?
         and parent_path_new is not null
@@ -92,8 +92,8 @@ def listar_filtros_unicos(conn, caminho):
 
         "subsistema_traducao": sorted(df["subsistema_traducao"].dropna().unique()),
         "uf": sorted(df["uf"].dropna().unique()),
-        "mes": sorted(df["mes"].dropna().unique()),
-        "ano": sorted(df["ano"].dropna().unique()),
+        "mes": sorted([int(m) for m in df["mes"].dropna().unique()]),
+        "ano": sorted([int(a) for a in df["ano"].dropna().unique()]),
         "extensao": sorted(df["extensao"].dropna().unique()),
         "complemento": sorted(df["complemento"].dropna().unique())
     }
