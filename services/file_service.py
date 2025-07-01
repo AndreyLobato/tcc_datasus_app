@@ -94,6 +94,7 @@ def mostrar_lista_arquivos(conn, caminho_atual, filtros_selecionados):
 def mostrar_traducoes_setores(conn):
     traducoes_df = obter_traducoes_distintas(conn)
     if not traducoes_df.empty:
+        st.markdown("---")
         st.markdown("### ℹ️ Tradução de Setores")
         for _, row in traducoes_df.iterrows():
             st.markdown(f"- `{row['sigla_sistema']}` → {row['sistema_traducao']}")
