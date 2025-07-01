@@ -1,3 +1,4 @@
+import config.settings
 import streamlit as st
 from ui.layout import show_header
 from services.file_service import mostrar_arquivos

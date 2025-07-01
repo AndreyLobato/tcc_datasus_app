@@ -71,6 +71,7 @@ def mostrar_opcao_download():
 
 
 def mostrar_arquivos_selecionados(conn):
+    max_tamanho_mb = 20 
 
     st.title("📦 Arquivos Selecionados")
 
@@ -102,31 +103,49 @@ def mostrar_arquivos_selecionados(conn):
                     if st.button("📄 CSV"):
                         with st.spinner("Convertendo para CSV..."):
                             for _, row in df.iterrows():
+
+                                tamanho_mb = row['tamanho'] / (1024 * 1024)
+                                if tamanho_mb > max_tamanho_mb:
+                                    st.warning(f"⚠️ O arquivo {row['nome']} ({tamanho_mb:.2f}MB) excede o limite de {max_tamanho_mb}MB e será pulado.")
+                                    continue
+                                
                                 local_temp = os.path.join("temp", "arquivos_baixados", row['nome'])
                                 baixar_arquivo_ftp(ftp, row['path'], local_temp)
                                 converter_para_csv(local_temp, row['nome'], "convertidos")
                                 limpar_pasta("temp/arquivos_baixados")
-                            st.success("Conversão para CSV concluída!")
+                            if tamanho_mb < max_tamanho_mb:
+                                st.success("Conversão para CSV concluída!")
 
                 with col2:
                     if st.button("🧪 Parquet"):
                         with st.spinner("Convertendo para Parquet..."):
                             for _, row in df.iterrows():
+                                tamanho_mb = row['tamanho'] / (1024 * 1024)
+                                if tamanho_mb > max_tamanho_mb:
+                                    st.warning(f"⚠️ O arquivo {row['nome']} ({tamanho_mb:.2f}MB) excede o limite de {max_tamanho_mb}MB e será pulado.")
+                                    continue
+
                                 local_temp = os.path.join("temp", "arquivos_baixados", row['nome'])
                                 baixar_arquivo_ftp(ftp, row['path'], local_temp)
                                 converter_para_parquet(local_temp, row['nome'], "convertidos")
                                 limpar_pasta("temp/arquivos_baixados")
-                            st.success("Conversão para Parquet concluída!")
+                            if tamanho_mb < max_tamanho_mb:
+                                st.success("Conversão para Parquet concluída!")
 
                 with col3:
                     if st.button("📦 ORC"):
                         with st.spinner("Convertendo para ORC..."):
                             for _, row in df.iterrows():
+                                tamanho_mb = row['tamanho'] / (1024 * 1024)
+                                if tamanho_mb > max_tamanho_mb:
+                                    st.warning(f"⚠️ O arquivo {row['nome']} ({tamanho_mb:.2f}MB) excede o limite de {max_tamanho_mb}MB e será pulado.")
+                                    continue
                                 local_temp = os.path.join("temp", "arquivos_baixados", row['nome'])
                                 baixar_arquivo_ftp(ftp, row['path'], local_temp)
                                 converter_para_orc(local_temp, row['nome'], "convertidos")
                                 limpar_pasta("temp/arquivos_baixados")
-                            st.success("Conversão para ORC concluída!")
+                            if tamanho_mb < max_tamanho_mb:
+                                st.success("Conversão para ORC concluída!")
     
             mostrar_opcao_download()
 
